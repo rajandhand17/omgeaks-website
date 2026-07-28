@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none" role="img" aria-label="OmGeaks">
+  <defs>
+    <linearGradient id="og-h" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00F5FF"/>
+      <stop offset="0.5" stop-color="#7B5CFF"/>
+      <stop offset="1" stop-color="#5EFCE8"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0,0)">
+    <path d="M32 4L54.5167 17V43L32 56L9.48334 43V17L32 4Z" stroke="url(#og-h)" stroke-width="1.5"/>
+    <path d="M22 32C22 27.5817 25.5817 24 30 24C32.5 24 34.5 25.2 36 27C37.5 25.2 39.5 24 42 24C46.4183 24 50 27.5817 50 32C50 36.4183 46.4183 40 42 40C39.5 40 37.5 38.8 36 37C34.5 38.8 32.5 40 30 40C25.5817 40 22 36.4183 22 32Z" stroke="url(#og-h)" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="30" cy="32" r="2.2" fill="#00F5FF"/>
+    <circle cx="36" cy="32" r="2.2" fill="#FFFFFF"/>
+    <circle cx="42" cy="32" r="2.2" fill="#5EFCE8"/>
+    <circle cx="32" cy="12" r="1.4" fill="#7B5CFF"/>
+  </g>
+  <text x="72" y="40" fill="#FFFFFF" font-family="Syne, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.5">OmGeaks</text>
+</svg>
