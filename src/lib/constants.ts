@@ -1,143 +1,158 @@
-export const COMPANY = {
-  name: "OmGeaks",
-  tagline: "Engineering Future Digital Experiences.",
-  email: "hello@omgeaks.com",
-  phone: "+1 (800) 555-0199",
-  location: "Global · Remote-first",
-} as const;
+export { COMPANY, BRAND } from "@/lib/brand";
 
 export const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#portfolio" },
-  { label: "AI", href: "#ai" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/#services" },
+  { label: "AI Agents", href: "/#agents" },
+  { label: "Work", href: "/#work" },
+  { label: "Process", href: "/#process" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
+export const TECH_STACK = [
+  { name: "Python", icon: "SiPython" },
+  { name: "Laravel", icon: "SiLaravel" },
+  { name: "FastAPI", icon: "SiFastapi" },
+  { name: "React", icon: "SiReact" },
+  { name: "Next.js", icon: "SiNextdotjs" },
+  { name: "Flutter", icon: "SiFlutter" },
+  { name: "Docker", icon: "SiDocker" },
+  { name: "AWS", icon: "SiAmazonwebservices" },
+  { name: "OpenAI", icon: "SiOpenai" },
+  { name: "n8n", icon: "SiN8N" },
+] as const;
+
+/** Seven flagship capabilities — one clear story each */
 export const SERVICES = [
-  {
-    title: "Premium Website Development",
-    description:
-      "Award-caliber web experiences engineered for performance, narrative, and conversion.",
-    icon: "globe",
-  },
-  {
-    title: "Enterprise Web Applications",
-    description:
-      "Mission-critical platforms built for scale, security, and operational excellence.",
-    icon: "building",
-  },
-  {
-    title: "Mobile Application Development",
-    description:
-      "Native-feeling Android & iOS products with fluid motion and enterprise reliability.",
-    icon: "mobile",
-  },
-  {
-    title: "Custom CRM & ERP Systems",
-    description:
-      "Tailored business systems that unify data, workflows, and decision intelligence.",
-    icon: "crm",
-  },
-  {
-    title: "AI Integration",
-    description:
-      "Seamless LLM and model integration woven into your product and operations.",
-    icon: "ai",
-  },
   {
     title: "AI Agents",
     description:
-      "Autonomous agents that research, execute, and orchestrate complex business tasks.",
-    icon: "agent",
+      "Production agents that research, decide, and execute workflows with guardrails, logging, and human oversight.",
+    outcome: "Hours of ops work automated daily",
+    icon: "RiRobot2Line",
   },
   {
     title: "Business Automation",
     description:
-      "Intelligent pipelines that eliminate friction and multiply team throughput.",
-    icon: "automation",
+      "End-to-end pipelines across CRM, email, finance, and internal tools — designed for reliability, not demos.",
+    outcome: "Fewer handoffs, faster cycle time",
+    icon: "RiFlowChart",
   },
   {
-    title: "API Development",
+    title: "Custom Software",
     description:
-      "Robust, documented APIs designed for developer delight and long-term scale.",
-    icon: "api",
+      "Mission-critical applications tailored to your domain — from internal platforms to customer-facing products.",
+    outcome: "Software that fits how you operate",
+    icon: "RiPuzzleLine",
   },
   {
-    title: "SaaS Product Development",
+    title: "Mobile Apps",
     description:
-      "From MVP to multi-tenant platform — product architecture built to grow.",
-    icon: "saas",
+      "iOS and Android products with native feel, offline resilience, and analytics wired for growth.",
+    outcome: "Ship to both stores with one team",
+    icon: "RiSmartphoneLine",
+  },
+  {
+    title: "Enterprise CRM",
+    description:
+      "Custom CRM and revenue systems that unify pipeline, data, and reporting — not bolted-on SaaS sprawl.",
+    outcome: "One source of truth for sales",
+    icon: "RiOrganizationChart",
   },
   {
     title: "Cloud Solutions",
     description:
-      "AWS & Azure architectures optimized for resilience, cost, and velocity.",
-    icon: "cloud",
+      "AWS architectures for scale, security, and cost control — CI/CD, observability, and zero-drama deploys.",
+    outcome: "Infrastructure that grows with you",
+    icon: "RiServerLine",
   },
   {
-    title: "UI/UX Design",
+    title: "Product Engineering",
     description:
-      "Interfaces that feel inevitable — clarity, hierarchy, and premium motion.",
-    icon: "design",
-  },
-  {
-    title: "Digital Transformation",
-    description:
-      "End-to-end modernization that turns legacy complexity into competitive advantage.",
-    icon: "transform",
+      "Embedded senior teams that own discovery, architecture, build, and launch like an in-house product org.",
+    outcome: "Velocity without quality debt",
+    icon: "RiToolsLine",
   },
 ] as const;
 
-export const TECH_STACK = [
-  "Python",
-  "Laravel",
-  "FastAPI",
-  "React",
-  "Next.js",
-  "Flutter",
-  "Node.js",
-  "Docker",
-  "AWS",
-  "Azure",
-  "OpenAI",
-  "PostgreSQL",
-  "MySQL",
-  "MongoDB",
-  "Redis",
-  "Kubernetes",
+export const DIFFERENTIATORS = [
+  {
+    title: "Engineering company, not an agency",
+    description:
+      "We ship production systems — agents, platforms, and products — led by senior engineers, not slide decks.",
+  },
+  {
+    title: "AI that earns its place",
+    description:
+      "Agents and automation only where they create measurable leverage: latency, cost, accuracy, or throughput.",
+  },
+  {
+    title: "Architecture before aesthetics",
+    description:
+      "Security, observability, and scale are designed on day one. Interfaces follow from clear system design.",
+  },
+  {
+    title: "Transparent delivery",
+    description:
+      "Fixed discovery, visible milestones, continuous demos. You always know what shipped and what’s next.",
+  },
 ] as const;
 
-export const PROCESS_STEPS = [
+export const AI_AGENTS = [
   {
-    step: "01",
-    title: "Discover",
+    title: "Research Agent",
     description:
-      "Deep immersion into your market, users, and technical constraints.",
+      "Scans markets, competitors, and documents — delivering structured briefs your team can act on.",
+    capability: "Knowledge synthesis",
+    stack: "LLM · RAG · evals",
   },
   {
-    step: "02",
-    title: "Design",
+    title: "Ops Automation Agent",
     description:
-      "Systems, interfaces, and interaction models crafted for clarity and desire.",
+      "Orchestrates multi-step processes across CRM, email, and internal APIs with audit trails.",
+    capability: "Workflow execution",
+    stack: "n8n · FastAPI · queues",
   },
   {
-    step: "03",
-    title: "Develop",
+    title: "Support Copilot",
     description:
-      "Precision engineering with modern stacks, AI leverage, and ruthless quality.",
+      "Resolves tickets with context from your knowledge base — escalates when confidence is low.",
+    capability: "Customer operations",
+    stack: "RAG · tools · Slack",
   },
   {
-    step: "04",
-    title: "Deploy",
+    title: "Data Analyst Agent",
     description:
-      "Hardened releases with observability, security, and zero-drama rollouts.",
+      "Queries live data, flags anomalies, and produces executive-ready summaries on a schedule.",
+    capability: "Decision intelligence",
+    stack: "SQL · Python · alerts",
+  },
+] as const;
+
+export const INDUSTRIES = [
+  {
+    name: "Healthcare",
+    description: "Clinical workflows, patient platforms, and compliant AI systems.",
   },
   {
-    step: "05",
-    title: "Scale",
-    description:
-      "Continuous optimization as your product, traffic, and ambition expand.",
+    name: "Finance",
+    description: "Secure fintech products, trading tools, and revenue platforms.",
+  },
+  {
+    name: "Manufacturing",
+    description: "Supply-chain systems, IoT dashboards, and plant automation.",
+  },
+  {
+    name: "Education",
+    description: "Learning platforms, admin systems, and adaptive content engines.",
+  },
+  {
+    name: "Retail",
+    description: "Commerce platforms, inventory intelligence, and personalization.",
+  },
+  {
+    name: "Real Estate",
+    description: "Proptech platforms, listing engines, and transaction workflows.",
   },
 ] as const;
 
@@ -146,125 +161,141 @@ export const PORTFOLIO = [
     id: "nexus",
     title: "Nexus Finance",
     category: "Fintech Platform",
-    description: "Real-time wealth orchestration for private banking.",
+    description: "Real-time wealth orchestration with automated compliance workflows.",
     year: "2025",
-    color: "#00F5FF",
+    tags: ["AI", "SaaS", "Finance"],
+    outcome: "2.4× faster ops review cycles",
   },
   {
     id: "lumen",
     title: "Lumen Health",
     category: "Healthcare AI",
-    description: "Clinical intelligence suite with agentic workflows.",
+    description: "Clinical intelligence suite powered by agentic document workflows.",
     year: "2025",
-    color: "#7B5CFF",
+    tags: ["AI Agents", "Healthcare"],
+    outcome: "68% less manual chart prep",
   },
   {
     id: "orbit",
     title: "Orbit Commerce",
     category: "E-commerce SaaS",
-    description: "Multi-brand commerce operating system.",
+    description: "Multi-brand commerce OS with inventory automation and CRM sync.",
     year: "2024",
-    color: "#5EFCE8",
+    tags: ["SaaS", "Retail", "Automation"],
+    outcome: "Unified 12 brands on one stack",
   },
   {
     id: "vertex",
     title: "Vertex Logistics",
-    category: "Enterprise ERP",
-    description: "Global supply-chain command platform.",
+    category: "Enterprise Platform",
+    description: "Global supply-chain command with exception-handling agents.",
     year: "2024",
-    color: "#00F5FF",
+    tags: ["Enterprise", "Cloud"],
+    outcome: "99.95% dispatch uptime",
+  },
+] as const;
+
+export const PROCESS_STEPS = [
+  {
+    step: "01",
+    title: "Discover",
+    description: "Map outcomes, systems, constraints, and where AI creates real leverage.",
   },
   {
-    id: "aurora",
-    title: "Aurora CRM",
-    category: "Custom CRM",
-    description: "Revenue intelligence built for enterprise sales.",
-    year: "2025",
-    color: "#7B5CFF",
+    step: "02",
+    title: "Architect",
+    description: "Design product, data, and agent architecture with clear ownership boundaries.",
+  },
+  {
+    step: "03",
+    title: "Build",
+    description: "Ship in weekly increments with demos, tests, and production-ready quality bars.",
+  },
+  {
+    step: "04",
+    title: "Launch",
+    description: "Hardened releases with monitoring, rollback plans, and operator runbooks.",
+  },
+  {
+    step: "05",
+    title: "Scale",
+    description: "Optimize cost, latency, and features as usage and ambition grow.",
   },
 ] as const;
 
 export const TESTIMONIALS = [
   {
     quote:
-      "OmGeaks didn't just deliver software — they elevated how our entire organization thinks about digital products.",
+      "OmGeaks didn't deliver a prototype — they put agents into production with the same rigor as our core banking stack.",
     name: "Sarah Chen",
     role: "CTO, Nexus Finance",
   },
   {
     quote:
-      "The craftsmanship is extraordinary. Every interaction feels intentional. Our launch conversion doubled in six weeks.",
+      "Clear architecture, honest timelines, and systems our clinicians actually use. Rare combination.",
     name: "Marcus Webb",
     role: "Founder, Lumen Health",
   },
   {
     quote:
-      "Working with OmGeaks feels like having Apple's product team inside your company. Unmatched quality and velocity.",
+      "They operate like an embedded product team. We moved from idea to multi-tenant SaaS without rebuilding twice.",
     name: "Priya Malhotra",
     role: "VP Product, Orbit Commerce",
   },
 ] as const;
 
-export const STATS = [
-  { value: 120, suffix: "+", label: "Projects Delivered" },
-  { value: 40, suffix: "+", label: "Enterprise Clients" },
-  { value: 18, suffix: "", label: "Countries Served" },
-  { value: 99, suffix: "%", label: "Client Retention" },
-] as const;
-
-export const INDUSTRIES = [
-  "Fintech",
-  "Healthcare",
-  "E-commerce",
-  "Logistics",
-  "SaaS",
-  "Real Estate",
-  "Education",
-  "Manufacturing",
-] as const;
-
 export const FAQ_ITEMS = [
   {
-    q: "What makes OmGeaks different from other development agencies?",
-    a: "We operate like a product studio, not a body shop. Every engagement is led by senior engineers and designers who obsess over craft, performance, and business outcomes — not billable hours.",
+    q: "What does OmGeaks actually build?",
+    a: "AI agents, business automation, custom software, mobile apps, enterprise CRM, cloud platforms, and full product engineering engagements — production systems, not marketing sites.",
   },
   {
-    q: "Do you work with startups or only enterprises?",
-    a: "Both. We partner with ambitious startups building category-defining products and enterprises modernizing mission-critical systems. The standard of excellence is identical.",
+    q: "How are you different from a typical agency?",
+    a: "We are an AI & Product Engineering company. Engagements are senior-led, architecture-first, and measured by operational outcomes — uptime, automation rate, and shipped product — not billable hours of design.",
   },
   {
-    q: "How do you approach AI integration?",
-    a: "AI-first, not AI-forced. We design agent architectures, LLM pipelines, and automation layers that create measurable leverage — grounded in your data, compliance needs, and product vision.",
+    q: "Do your AI agents work in production?",
+    a: "Yes. We design agents with tools, guardrails, evaluation, and observability so they can run in real workflows — with clear escalation paths when confidence is low.",
   },
   {
-    q: "What does a typical engagement look like?",
-    a: "Discover → Design → Develop → Deploy → Scale. Fixed discovery, transparent milestones, continuous demos, and a deployment pipeline built for confidence.",
+    q: "How do engagements start?",
+    a: "Book a consultation or message us on WhatsApp. We run a focused discovery, propose architecture and milestones, then begin build with visible weekly progress.",
   },
   {
     q: "Can you take over an existing codebase?",
-    a: "Yes. We audit, stabilize, and modernize legacy systems — then accelerate roadmap delivery without rewriting everything from scratch unless it truly warrants it.",
+    a: "Yes. We audit, stabilize, and modernize — then accelerate delivery without unnecessary rewrites.",
   },
 ] as const;
 
-export const WHY_US = [
+export const ASSISTANT_REPLIES = [
   {
-    title: "AI-First Approach",
-    description:
-      "Every product is designed with intelligent automation and agentic capability at its core.",
+    id: "agents",
+    label: "AI Agents",
+    message: "I'd like to discuss AI agents for our business.",
   },
   {
-    title: "Enterprise Architecture",
-    description:
-      "Security, observability, and scalability engineered from day one — not bolted on later.",
+    id: "automation",
+    label: "Business Automation",
+    message: "I'd like to automate workflows across our tools.",
   },
   {
-    title: "Worldwide Delivery",
-    description:
-      "Follow-the-sun collaboration with senior talent across time zones, without quality compromise.",
+    id: "software",
+    label: "Custom Software",
+    message: "I'd like to build custom software / a product with OmGeaks.",
   },
   {
-    title: "Scalable Systems",
-    description:
-      "Infrastructure and codebases built to handle 10× growth without 10× complexity.",
+    id: "mobile",
+    label: "Mobile App",
+    message: "I'd like to build a mobile application.",
+  },
+  {
+    id: "crm",
+    label: "CRM / Cloud",
+    message: "I'd like help with CRM or cloud infrastructure.",
+  },
+  {
+    id: "consult",
+    label: "Book a consultation",
+    message: "I'd like to book a consultation with OmGeaks.",
   },
 ] as const;
