@@ -13,9 +13,24 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       duration: 1.25,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      anchors: { offset: -88 },
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+
+    const scrollToHash = (hash: string) => {
+      if (!hash || hash === "#") return;
+      const el = document.querySelector(hash);
+      if (el instanceof HTMLElement) {
+        lenis.scrollTo(el, { offset: -88 });
+      }
+    };
+
+    // Land on in-page anchors (e.g. /#services) after navigation
+    requestAnimationFrame(() => scrollToHash(window.location.hash));
+
+    const onHashChange = () => scrollToHash(window.location.hash);
+    window.addEventListener("hashchange", onHashChange);
 
     const raf = (time: number) => {
       lenis.raf(time);
@@ -27,6 +42,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     return () => {
       cancelAnimationFrame(id);
+      window.removeEventListener("hashchange", onHashChange);
       lenis.destroy();
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };

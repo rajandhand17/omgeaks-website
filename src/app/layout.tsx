@@ -43,12 +43,22 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "OmGeaks",
     locale: "en_US",
+    url: "https://omgeaks.com",
+    images: [
+      {
+        url: "/logos/omgeaks-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "OmGeaks",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "OmGeaks — AI & Product Engineering",
     description:
       "AI agents, automation, custom software, mobile apps, CRM, and cloud — engineered for production.",
+    images: ["/logos/omgeaks-logo.png"],
   },
   icons: {
     icon: [

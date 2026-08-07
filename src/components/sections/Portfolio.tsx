@@ -22,7 +22,7 @@ export function Portfolio() {
       <SectionHeading
         eyebrow="Outcomes"
         title="Work measured by what changed in the business"
-        description="Selected engagements across finance, healthcare, commerce, and enterprise operations."
+        description="Representative engagement patterns across finance, healthcare, commerce, and enterprise operations."
       />
 
       <div ref={ref} className="grid gap-4 md:grid-cols-2">

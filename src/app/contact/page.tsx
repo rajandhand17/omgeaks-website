@@ -13,6 +13,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { COMPANY } from "@/lib/constants";
+import { ENQUIRY_EMAIL_SUBJECT } from "@/lib/contact-email";
 
 const inputClass =
   "mt-2 w-full rounded-xl border border-[rgba(0,59,115,0.12)] bg-white px-4 py-3 text-sm text-navy outline-none transition focus:border-sky/50 disabled:opacity-60";
@@ -30,41 +31,81 @@ export default function ContactPage() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    // Honeypot — bots fill this; humans never see it
+    if (String(data.get("website") || "").trim()) {
+      setSent(true);
+      form.reset();
+      setLoading(false);
+      return;
+    }
+
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim() || "—";
+    const company = String(data.get("company") || "").trim() || "—";
+    const message = String(data.get("message") || "").trim();
+
+    const payload = {
+      name,
+      email,
+      phone,
+      company,
+      message,
+      _subject: ENQUIRY_EMAIL_SUBJECT,
+      _template: "table",
+      _captcha: "false",
+      _replyto: email,
+      // Helps FormSubmit format a cleaner, brand-labelled message
+      "Enquiry type": "Website contact form",
+      Source: "https://www.omgeaks.com/contact",
+    };
+
     try {
-      const res = await fetch("/api/contact", {
+      const apiRes = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          phone: data.get("phone"),
-          company: data.get("company"),
-          message: data.get("message"),
-        }),
+        body: JSON.stringify({ name, email, phone, company, message }),
       });
+      const apiJson = (await apiRes.json()) as { ok?: boolean; error?: string };
 
-      const json = (await res.json()) as { ok?: boolean; error?: string };
+      if (apiRes.ok && apiJson.ok) {
+        setSent(true);
+        form.reset();
+        return;
+      }
 
-      if (!res.ok || !json.ok) {
-        throw new Error(json.error || "Failed to send message.");
+      const fsRes = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(COMPANY.email)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      const fsJson = (await fsRes.json().catch(() => ({}))) as {
+        success?: string | boolean;
+        message?: string;
+      };
+      const ok =
+        fsJson.success === true || String(fsJson.success).toLowerCase() === "true";
+
+      if (!fsRes.ok || !ok) {
+        const msg = fsJson.message || apiJson.error || "Failed to send message.";
+        if (/activat/i.test(msg)) {
+          throw new Error(
+            `Check ${COMPANY.email} (inbox + spam) for a FormSubmit “Activate Form” email, click it once, then submit again.`
+          );
+        }
+        throw new Error(msg);
       }
 
       setSent(true);
       form.reset();
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Failed to send message.";
-      setError(msg);
-
-      // Keep a guaranteed path open: WhatsApp with the filled details
-      const name = String(data.get("name") || "");
-      const email = String(data.get("email") || "");
-      const phone = String(data.get("phone") || "");
-      const company = String(data.get("company") || "");
-      const message = String(data.get("message") || "");
-      const waText = encodeURIComponent(
-        `Hi OmGeaks,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\n\n${message}`
-      );
-      setWhatsappFallback(`${COMPANY.whatsapp}?text=${waText}`);
+      setError(err instanceof Error ? err.message : "Failed to send message.");
     } finally {
       setLoading(false);
     }
@@ -189,6 +230,15 @@ export default function ContactPage() {
                     </div>
                   ) : (
                     <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
+                      {/* Honeypot — leave empty */}
+                      <input
+                        type="text"
+                        name="website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden
+                        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                      />
                       <label className="block text-xs uppercase tracking-[0.18em] text-navy/45">
                         Name
                         <input required name="name" disabled={loading} className={inputClass} />
@@ -222,17 +272,9 @@ export default function ContactPage() {
                         />
                       </label>
                       {error && (
-                        <div className="rounded-2xl border border-orange/25 bg-orange/5 px-4 py-3 text-sm text-navy/80 sm:col-span-2" role="alert">
-                          <p>{error}</p>
-                          <a
-                            href={COMPANY.whatsapp}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-2 inline-flex font-medium text-[#25D366] hover:underline"
-                          >
-                            Or message us on WhatsApp →
-                          </a>
-                        </div>
+                        <p className="text-sm text-orange sm:col-span-2" role="alert">
+                          {error}
+                        </p>
                       )}
                       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center">
                         <Button

@@ -62,7 +62,15 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-[rgba(0,59,115,0.08)] pt-6 text-xs text-navy/40 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} OmGeaks. All rights reserved.</p>
-          <p className="text-navy/30">AI & Product Engineering</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link href="/privacy" className="link-lux">
+              Privacy
+            </Link>
+            <Link href="/terms" className="link-lux">
+              Terms
+            </Link>
+            <span className="text-navy/30">AI & Product Engineering</span>
+          </div>
         </div>
       </div>
     </footer>

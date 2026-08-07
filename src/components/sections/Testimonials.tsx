@@ -14,9 +14,9 @@ export function Testimonials() {
   return (
     <Section id="testimonials">
       <SectionHeading
-        eyebrow="Testimonials"
-        title="Trusted by ambitious product teams"
-        description="Partnerships defined by craft, velocity, and outcomes that compound."
+        eyebrow="Client voice"
+        title="What partners value in how we work"
+        description="Themes we hear repeatedly: production rigor, clear communication, and outcomes that compound."
         align="center"
       />
 
