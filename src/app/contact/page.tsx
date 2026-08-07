@@ -52,7 +52,19 @@ export default function ContactPage() {
       setSent(true);
       form.reset();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to send message.");
+      const msg = err instanceof Error ? err.message : "Failed to send message.";
+      setError(msg);
+
+      // Keep a guaranteed path open: WhatsApp with the filled details
+      const name = String(data.get("name") || "");
+      const email = String(data.get("email") || "");
+      const phone = String(data.get("phone") || "");
+      const company = String(data.get("company") || "");
+      const message = String(data.get("message") || "");
+      const waText = encodeURIComponent(
+        `Hi OmGeaks,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\n\n${message}`
+      );
+      setWhatsappFallback(`${COMPANY.whatsapp}?text=${waText}`);
     } finally {
       setLoading(false);
     }
@@ -210,9 +222,17 @@ export default function ContactPage() {
                         />
                       </label>
                       {error && (
-                        <p className="text-sm text-orange sm:col-span-2" role="alert">
-                          {error}
-                        </p>
+                        <div className="rounded-2xl border border-orange/25 bg-orange/5 px-4 py-3 text-sm text-navy/80 sm:col-span-2" role="alert">
+                          <p>{error}</p>
+                          <a
+                            href={COMPANY.whatsapp}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-2 inline-flex font-medium text-[#25D366] hover:underline"
+                          >
+                            Or message us on WhatsApp →
+                          </a>
+                        </div>
                       )}
                       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center">
                         <Button
