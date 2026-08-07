@@ -4,6 +4,7 @@ import { Resend } from "resend";
 import { ENQUIRY_EMAIL_SUBJECT } from "@/lib/contact-email";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "rajandhand17@gmail.com";
+// Public-facing address is hello@omgeaks.com (forwards to CONTACT_TO_EMAIL via DNS).
 
 type ContactBody = {
   name?: string;

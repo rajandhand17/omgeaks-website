@@ -75,7 +75,7 @@ export default function ContactPage() {
       }
 
       const fsRes = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(COMPANY.email)}`,
+        `https://formsubmit.co/ajax/${encodeURIComponent(COMPANY.emailInbox)}`,
         {
           method: "POST",
           headers: {
@@ -96,7 +96,7 @@ export default function ContactPage() {
         const msg = fsJson.message || apiJson.error || "Failed to send message.";
         if (/activat/i.test(msg)) {
           throw new Error(
-            `Check ${COMPANY.email} (inbox + spam) for a FormSubmit “Activate Form” email, click it once, then submit again.`
+            `Check ${COMPANY.emailInbox} (inbox + spam) for a FormSubmit “Activate Form” email, click it once, then submit again.`
           );
         }
         throw new Error(msg);
