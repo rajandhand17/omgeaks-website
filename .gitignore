@@ -36,8 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# logo processing backups
+public/logos/_backup_white_bg/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 .vercel
+.env*
