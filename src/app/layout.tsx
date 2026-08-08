@@ -86,6 +86,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  verification: {
+    google: "EILzinoHowDkOUZtipcsIpePP8d7RION68-rLU7wDEE",
+  },
   other: {
     "geo.region": "IN",
     "geo.placename": "India",
