@@ -9,6 +9,8 @@ import { COMPANY } from "@/lib/brand";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How OmGeaks collects, uses, and protects information submitted through omgeaks.com.",
+  alternates: { canonical: "https://omgeaks.com/privacy" },
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacyPage() {

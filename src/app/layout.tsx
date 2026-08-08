@@ -1,5 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoscript,
+} from "@/components/analytics/GoogleTagManager";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  SEO_KEYWORDS,
+  SITE_URL,
+  faqJsonLd,
+  organizationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -17,47 +30,42 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://omgeaks.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "OmGeaks — AI & Product Engineering",
+    default: DEFAULT_TITLE,
     template: "%s · OmGeaks",
   },
-  description:
-    "OmGeaks builds AI agents, business automation, custom software, mobile apps, enterprise CRM, and cloud platforms — production systems led by senior engineers.",
-  keywords: [
-    "OmGeaks",
-    "AI agents",
-    "product engineering",
-    "business automation",
-    "enterprise CRM",
-    "custom software",
-    "mobile app development",
-    "cloud solutions",
-  ],
-  authors: [{ name: "OmGeaks" }],
+  description: DEFAULT_DESCRIPTION,
+  applicationName: "OmGeaks",
+  keywords: [...SEO_KEYWORDS],
+  authors: [{ name: "OmGeaks", url: SITE_URL }],
   creator: "OmGeaks",
+  publisher: "OmGeaks",
+  category: "technology",
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "OmGeaks — AI & Product Engineering",
-    description:
-      "We build AI agents, automation, and software that run your business. Book a consultation or chat on WhatsApp.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     type: "website",
     siteName: "OmGeaks",
     locale: "en_US",
-    url: "https://omgeaks.com",
+    url: SITE_URL,
     images: [
       {
         url: "/logos/omgeaks-logo.png",
         width: 1200,
         height: 630,
-        alt: "OmGeaks",
+        alt: "OmGeaks — AI & Product Engineering IT Company",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "OmGeaks — AI & Product Engineering",
+    title: DEFAULT_TITLE,
     description:
-      "AI agents, automation, custom software, mobile apps, CRM, and cloud — engineered for production.",
+      "AI agents, automation, custom software, mobile apps, CRM, and cloud — engineered for production by OmGeaks.",
     images: ["/logos/omgeaks-logo.png"],
   },
   icons: {
@@ -70,6 +78,17 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  other: {
+    "geo.region": "IN",
+    "geo.placename": "India",
   },
 };
 
@@ -84,12 +103,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = [organizationJsonLd(), websiteJsonLd(), faqJsonLd()];
+
   return (
     <html
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white font-sans text-navy">{children}</body>
+      <body className="min-h-full bg-white font-sans text-navy">
+        <GoogleTagManager />
+        <GoogleTagManagerNoscript />
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      </body>
     </html>
   );
 }

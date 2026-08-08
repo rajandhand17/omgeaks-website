@@ -9,6 +9,8 @@ import { COMPANY } from "@/lib/brand";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms governing use of the OmGeaks website and enquiries submitted through it.",
+  alternates: { canonical: "https://omgeaks.com/terms" },
+  robots: { index: true, follow: true },
 };
 
 export default function TermsPage() {
