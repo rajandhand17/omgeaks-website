@@ -10,9 +10,9 @@ import { COMPANY } from "@/lib/brand";
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const TRUST = [
-  { value: "AI-first", label: "Product engineering" },
-  { value: "Senior-led", label: "Delivery teams" },
-  { value: "Production", label: "Agents & platforms" },
+  { value: "Software", label: "Custom systems" },
+  { value: "Websites", label: "SEO & conversion" },
+  { value: "Mobile apps", label: "iOS & Android" },
 ] as const;
 
 export function Hero() {
@@ -48,7 +48,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1, ease }}
             className="eyebrow mb-5"
           >
-            AI & Product Engineering
+            AI & Product Engineering · Ludhiana, Punjab
           </motion.p>
 
           <motion.h1
@@ -57,8 +57,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.16, ease }}
             className="font-display text-[clamp(2.35rem,5.8vw,3.75rem)] font-bold leading-[1.08] tracking-[-0.035em] text-navy"
           >
-            We build AI agents, automation, and software that{" "}
-            <span className="text-gradient">run your business</span>
+            OmGeaks — software, websites &amp; mobile apps{" "}
+            <span className="text-gradient">engineered for growth</span>
           </motion.h1>
 
           <motion.p
@@ -67,9 +67,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.28, ease }}
             className="mt-5 max-w-lg text-[1.05rem] leading-[1.7] text-muted"
           >
-            OmGeaks is not a design agency. We engineer production systems —
-            agents, CRM, mobile apps, cloud platforms — with senior ownership
-            from architecture to launch.
+            OmGeaks Pvt. Ltd. is a software company in Samrala, Ludhiana building custom
+            software, high-performance websites, mobile applications, and AI automation —
+            production systems that help your business get found and scale.
           </motion.p>
 
           <motion.div

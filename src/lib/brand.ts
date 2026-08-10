@@ -17,13 +17,34 @@ export const BRAND = {
 
 export const COMPANY = {
   name: "OmGeaks",
-  legalName: "OmGeaks",
+  legalName: "OmGeaks Pvt. Ltd.",
   tagline: "Engineering Intelligent Digital Products",
   positioning: "AI & Product Engineering",
   email: "hello@omgeaks.com",
   emailInbox: "rajandhand17@gmail.com",
   phone: "+91 97808 88877",
   phoneRaw: "919780888877",
-  location: "India · Global Delivery",
+  location: "Samrala, Ludhiana, Punjab · India",
   whatsapp: "https://wa.me/919780888877",
+  /** Google Business Profile share link */
+  googleBusinessProfile: "https://share.google/8rHcBNOddSkJW5FMS",
+  address: {
+    streetAddress: "Street No 2, Kamal Colony",
+    addressLocality: "Samrala",
+    addressRegion: "Punjab",
+    addressArea: "Ludhiana",
+    postalCode: "141114",
+    addressCountry: "IN",
+  },
+  geo: {
+    latitude: 30.8364,
+    longitude: 76.1931,
+  },
+  openingHours: ["Mo-Su 09:00-23:00"] as string[],
 } as const;
+
+/** Single-line address for UI + schema */
+export function formatCompanyAddress() {
+  const a = COMPANY.address;
+  return `${a.streetAddress}, ${a.addressLocality}, ${a.addressArea}, ${a.addressRegion} ${a.postalCode}, India`;
+}

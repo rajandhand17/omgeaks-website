@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { COMPANY } from "@/lib/constants";
 import { ENQUIRY_EMAIL_SUBJECT } from "@/lib/contact-email";
+import { SITE_URL, formatCompanyAddress } from "@/lib/seo";
 
 const inputClass =
   "mt-2 w-full rounded-xl border border-[rgba(0,59,115,0.12)] bg-white px-4 py-3 text-sm text-navy outline-none transition focus:border-sky/50 disabled:opacity-60";
@@ -57,7 +58,7 @@ export default function ContactPage() {
       _replyto: email,
       // Helps FormSubmit format a cleaner, brand-labelled message
       "Enquiry type": "Website contact form",
-      Source: "https://www.omgeaks.com/contact",
+      Source: `${SITE_URL}/contact`,
     };
 
     try {
@@ -135,12 +136,12 @@ export default function ContactPage() {
                 <Logo variant="full" className="mb-8 h-24 md:h-28" priority />
                 <p className="eyebrow mb-4">Contact</p>
                 <h1 className="font-display text-4xl font-bold leading-[1.05] text-navy md:text-5xl lg:text-6xl">
-                  Let&apos;s engineer something{" "}
-                  <span className="text-gradient">extraordinary</span>.
+                  Contact OmGeaks in Samrala, Ludhiana —{" "}
+                  <span className="text-gradient">start your project</span>
                 </h1>
                 <p className="mt-4 max-w-xl text-muted md:text-lg">
-                  Send a brief or reach us on WhatsApp — we typically respond within one business
-                  day.
+                  Tell us about your software, website, or mobile app idea. We typically respond
+                  within one business day.
                 </p>
               </motion.div>
 
@@ -166,9 +167,9 @@ export default function ContactPage() {
                       Icon: RiPhoneLine,
                     },
                     {
-                      label: "Presence",
-                      value: COMPANY.location,
-                      href: undefined,
+                      label: "Address",
+                      value: formatCompanyAddress(),
+                      href: COMPANY.googleBusinessProfile,
                       Icon: RiMapPinLine,
                     },
                   ].map((card, i) => (

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { Button } from "@/components/ui/Button";
-import { NAV_LINKS, COMPANY } from "@/lib/constants";
+import { NAV_LINKS, COMPANY, FOOTER_SERVICE_LINKS } from "@/lib/constants";
+import { formatCompanyAddress } from "@/lib/seo";
 
 /** Footer uses the FULL logo (icon + OMGEAKS wordmark) */
 export function Footer() {
@@ -15,8 +16,8 @@ export function Footer() {
           <div className="max-w-md">
             <Logo variant="full" className="h-20 md:h-24" />
             <p className="mt-6 text-[0.95rem] leading-relaxed text-muted">
-              AI & Product Engineering company building intelligent agents,
-              automation, and enterprise software that scales.
+              OmGeaks Pvt. Ltd. — software company in Samrala, Ludhiana (Punjab) building custom
+              software, websites, mobile apps, and AI systems for businesses worldwide.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <Button href="/contact" variant="primary" className="!px-6 !py-2.5 text-xs">
@@ -32,6 +33,16 @@ export function Footer() {
                 Navigate
               </p>
               {NAV_LINKS.map((l) => (
+                <Link key={l.href} href={l.href} className="link-lux block">
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+            <div className="space-y-3">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-navy/35">
+                Services
+              </p>
+              {FOOTER_SERVICE_LINKS.map((l) => (
                 <Link key={l.href} href={l.href} className="link-lux block">
                   {l.label}
                 </Link>
@@ -55,13 +66,20 @@ export function Footer() {
               >
                 WhatsApp {COMPANY.phone}
               </a>
-              <p className="text-navy/40">{COMPANY.location}</p>
+              <a
+                href={COMPANY.googleBusinessProfile}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-lux block text-navy/55"
+              >
+                {formatCompanyAddress()}
+              </a>
             </div>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-[rgba(0,59,115,0.08)] pt-6 text-xs text-navy/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} OmGeaks. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} OmGeaks Pvt. Ltd. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4">
             <Link href="/privacy" className="link-lux">
               Privacy
@@ -69,7 +87,7 @@ export function Footer() {
             <Link href="/terms" className="link-lux">
               Terms
             </Link>
-            <span className="text-navy/30">AI & Product Engineering</span>
+            <span className="text-navy/30">Software · Websites · Mobile Apps</span>
           </div>
         </div>
       </div>

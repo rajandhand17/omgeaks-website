@@ -19,6 +19,7 @@ import { Process } from "@/components/sections/Process";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
+import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 
 export default function HomePage() {
   const [ready, setReady] = useState(false);
@@ -26,6 +27,7 @@ export default function HomePage() {
 
   return (
     <>
+      <HomeJsonLd />
       <Loader onComplete={onComplete} />
       <div className="noise-overlay" aria-hidden />
       <CursorAura />

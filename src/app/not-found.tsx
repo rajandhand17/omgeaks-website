@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  description: "The page you requested could not be found on OmGeaks.",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

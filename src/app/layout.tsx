@@ -7,9 +7,10 @@ import {
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
+  OG_IMAGE,
   SEO_KEYWORDS,
   SITE_URL,
-  faqJsonLd,
+  localBusinessJsonLd,
   organizationJsonLd,
   websiteJsonLd,
 } from "@/lib/seo";
@@ -50,28 +51,24 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     type: "website",
     siteName: "OmGeaks",
-    locale: "en_US",
+    locale: "en_IN",
     url: SITE_URL,
-    images: [
-      {
-        url: "/logos/omgeaks-logo.png",
-        width: 1200,
-        height: 630,
-        alt: "OmGeaks — AI & Product Engineering IT Company",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: DEFAULT_TITLE,
     description:
-      "AI agents, automation, custom software, mobile apps, CRM, and cloud — engineered for production by OmGeaks.",
-    images: ["/logos/omgeaks-logo.png"],
+      "AI agents, automation, custom software, websites, mobile apps, CRM, and cloud — engineered for production by OmGeaks.",
+    images: [OG_IMAGE.url],
   },
   icons: {
     icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon-omgeaks.png", sizes: "64x64", type: "image/png" },
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
   },
@@ -87,11 +84,15 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "EILzinoHowDkOUZtipcsIpePP8d7RION68-rLU7wDEE",
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+      "EILzinoHowDkOUZtipcsIpePP8d7RION68-rLU7wDEE",
   },
   other: {
-    "geo.region": "IN",
-    "geo.placename": "India",
+    "geo.region": "IN-PB",
+    "geo.placename": "Samrala, Ludhiana, Punjab",
+    "geo.position": "30.8364;76.1931",
+    ICBM: "30.8364, 76.1931",
   },
 };
 
@@ -106,7 +107,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const structuredData = [organizationJsonLd(), websiteJsonLd(), faqJsonLd()];
+  const structuredData = [organizationJsonLd(), localBusinessJsonLd(), websiteJsonLd()];
 
   return (
     <html

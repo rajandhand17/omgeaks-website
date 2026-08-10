@@ -1,12 +1,18 @@
 export { COMPANY, BRAND } from "@/lib/brand";
 
 export const NAV_LINKS = [
-  { label: "Services", href: "/#services" },
-  { label: "AI Agents", href: "/#agents" },
+  { label: "Services", href: "/services" },
   { label: "Work", href: "/#work" },
   { label: "Process", href: "/#process" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
+] as const;
+
+export const FOOTER_SERVICE_LINKS = [
+  { label: "Software Development", href: "/services/software-development" },
+  { label: "Website Development", href: "/services/website-development" },
+  { label: "Mobile App Development", href: "/services/mobile-app-development" },
+  { label: "AI Agents & Automation", href: "/services/ai-agents" },
 ] as const;
 
 export const TECH_STACK = [
@@ -22,21 +28,15 @@ export const TECH_STACK = [
   { name: "n8n", icon: "SiN8N" },
 ] as const;
 
-/** Seven flagship capabilities — one clear story each */
+/** Flagship capabilities — linked to SEO service pages where applicable */
 export const SERVICES = [
   {
-    title: "AI Agents",
+    title: "Website Development",
     description:
-      "Production agents that research, decide, and execute workflows with guardrails, logging, and human oversight.",
-    outcome: "Hours of ops work automated daily",
-    icon: "RiRobot2Line",
-  },
-  {
-    title: "Business Automation",
-    description:
-      "End-to-end pipelines across CRM, email, finance, and internal tools — designed for reliability, not demos.",
-    outcome: "Fewer handoffs, faster cycle time",
-    icon: "RiFlowChart",
+      "Premium business websites and web apps that load fast, rank on Google, and convert visitors into leads.",
+    outcome: "A site that works as a growth engine",
+    icon: "RiGlobalLine",
+    href: "/services/website-development",
   },
   {
     title: "Custom Software",
@@ -44,6 +44,7 @@ export const SERVICES = [
       "Mission-critical applications tailored to your domain — from internal platforms to customer-facing products.",
     outcome: "Software that fits how you operate",
     icon: "RiPuzzleLine",
+    href: "/services/software-development",
   },
   {
     title: "Mobile Apps",
@@ -51,6 +52,23 @@ export const SERVICES = [
       "iOS and Android products with native feel, offline resilience, and analytics wired for growth.",
     outcome: "Ship to both stores with one team",
     icon: "RiSmartphoneLine",
+    href: "/services/mobile-app-development",
+  },
+  {
+    title: "AI Agents",
+    description:
+      "Production agents that research, decide, and execute workflows with guardrails, logging, and human oversight.",
+    outcome: "Hours of ops work automated daily",
+    icon: "RiRobot2Line",
+    href: "/services/ai-agents",
+  },
+  {
+    title: "Business Automation",
+    description:
+      "End-to-end pipelines across CRM, email, finance, and internal tools — designed for reliability, not demos.",
+    outcome: "Fewer handoffs, faster cycle time",
+    icon: "RiFlowChart",
+    href: "/services/ai-agents",
   },
   {
     title: "Enterprise CRM",
@@ -58,6 +76,7 @@ export const SERVICES = [
       "Custom CRM and revenue systems that unify pipeline, data, and reporting — not bolted-on SaaS sprawl.",
     outcome: "One source of truth for sales",
     icon: "RiOrganizationChart",
+    href: "/services/software-development",
   },
   {
     title: "Cloud Solutions",
@@ -65,6 +84,7 @@ export const SERVICES = [
       "AWS architectures for scale, security, and cost control — CI/CD, observability, and zero-drama deploys.",
     outcome: "Infrastructure that grows with you",
     icon: "RiServerLine",
+    href: "/services/software-development",
   },
   {
     title: "Product Engineering",
@@ -72,14 +92,15 @@ export const SERVICES = [
       "Embedded senior teams that own discovery, architecture, build, and launch like an in-house product org.",
     outcome: "Velocity without quality debt",
     icon: "RiToolsLine",
+    href: "/services",
   },
 ] as const;
 
 export const DIFFERENTIATORS = [
   {
-    title: "Engineering company, not an agency",
+    title: "Software company, not just an agency",
     description:
-      "We ship production systems — agents, platforms, and products — led by senior engineers, not slide decks.",
+      "We ship production websites, apps, and software systems — led by senior engineers, not slide decks alone.",
   },
   {
     title: "AI that earns its place",
@@ -89,7 +110,7 @@ export const DIFFERENTIATORS = [
   {
     title: "Architecture before aesthetics",
     description:
-      "Security, observability, and scale are designed on day one. Interfaces follow from clear system design.",
+      "Security, SEO, observability, and scale are designed on day one. Interfaces follow from clear system design.",
   },
   {
     title: "Transparent delivery",
@@ -246,12 +267,20 @@ export const TESTIMONIALS = [
 
 export const FAQ_ITEMS = [
   {
-    q: "What does OmGeaks actually build?",
-    a: "AI agents, business automation, custom software, mobile apps, enterprise CRM, cloud platforms, and full product engineering engagements — production systems, not marketing sites.",
+    q: "What is the correct name — OmGeaks or Omega?",
+    a: "Our company name is OmGeaks Pvt. Ltd. (brand: OmGeaks). We are a software company in Samrala, Ludhiana, Punjab. We are not Omega Pvt. Ltd. or any Omega brand. Website: omgeaks.com.",
   },
   {
-    q: "How are you different from a typical agency?",
-    a: "We are an AI & Product Engineering company. Engagements are senior-led, architecture-first, and measured by operational outcomes — uptime, automation rate, and shipped product — not billable hours of design.",
+    q: "What does OmGeaks build?",
+    a: "OmGeaks builds custom software, business websites, mobile apps (iOS & Android), AI agents, automation, CRM systems, and cloud platforms — production-ready digital products for growing companies.",
+  },
+  {
+    q: "Are you a software company or a web design agency?",
+    a: "We are a software company. We design and develop websites, web apps, and mobile apps with engineering depth — SEO, performance, security, and integrations included — not just visual mockups.",
+  },
+  {
+    q: "Where is OmGeaks located?",
+    a: "OmGeaks Pvt. Ltd. is based in Street No 2, Kamal Colony, Samrala, Ludhiana, Punjab (India). We serve clients across Punjab, India, and internationally.",
   },
   {
     q: "Do your AI agents work in production?",
@@ -262,21 +291,16 @@ export const FAQ_ITEMS = [
     a: "Book a consultation or message us on WhatsApp. We run a focused discovery, propose architecture and milestones, then begin build with visible weekly progress.",
   },
   {
-    q: "Can you take over an existing codebase?",
-    a: "Yes. We audit, stabilize, and modernize — then accelerate delivery without unnecessary rewrites.",
+    q: "Can you take over an existing website or codebase?",
+    a: "Yes. We audit, stabilize, and modernize websites, apps, and software — then accelerate delivery without unnecessary rewrites.",
   },
 ] as const;
 
 export const ASSISTANT_REPLIES = [
   {
-    id: "agents",
-    label: "AI Agents",
-    message: "I'd like to discuss AI agents for our business.",
-  },
-  {
-    id: "automation",
-    label: "Business Automation",
-    message: "I'd like to automate workflows across our tools.",
+    id: "website",
+    label: "Website",
+    message: "I'd like to build or redesign a business website.",
   },
   {
     id: "software",
@@ -289,9 +313,14 @@ export const ASSISTANT_REPLIES = [
     message: "I'd like to build a mobile application.",
   },
   {
-    id: "crm",
-    label: "CRM / Cloud",
-    message: "I'd like help with CRM or cloud infrastructure.",
+    id: "agents",
+    label: "AI Agents",
+    message: "I'd like to discuss AI agents for our business.",
+  },
+  {
+    id: "automation",
+    label: "Business Automation",
+    message: "I'd like to automate workflows across our tools.",
   },
   {
     id: "consult",

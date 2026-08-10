@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "OmGeaks — AI & Product Engineering",
     short_name: "OmGeaks",
     description:
-      "AI & Product Engineering IT company — AI agents, automation, software, mobile apps, CRM, and cloud.",
+      "Software, website & mobile app development company — AI agents, automation, CRM, and cloud by OmGeaks.",
     start_url: "/",
     display: "standalone",
     background_color: "#FFFFFF",
@@ -15,6 +15,18 @@ export default function manifest(): MetadataRoute.Manifest {
         src: "/favicon-omgeaks.png",
         sizes: "64x64",
         type: "image/png",
+      },
+      {
+        src: "/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
       },
       {
         src: "/apple-touch-icon.png",

@@ -37,13 +37,13 @@ export function AboutPageClient() {
                 <Logo variant="full" className="mb-8 h-24 md:h-28" priority />
                 <p className="eyebrow mb-4">About OmGeaks</p>
                 <h1 className="font-display text-4xl font-bold leading-[1.08] text-navy md:text-5xl lg:text-6xl">
-                  An AI & Product Engineering company built for{" "}
-                  <span className="text-gradient">serious products</span>.
+                  OmGeaks — an IT company in Ludhiana building{" "}
+                  <span className="text-gradient">software, websites &amp; apps</span>
                 </h1>
                 <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-                  We are not a generic web design agency. OmGeaks engineers AI agents,
-                  business automation, enterprise CRM, SaaS platforms, and cloud systems
-                  that help ambitious companies scale with confidence.
+                  OmGeaks Pvt. Ltd. is a software company based in Samrala, Ludhiana (Punjab).
+                  We engineer custom software, premium websites, mobile applications, AI agents,
+                  and cloud platforms for ambitious businesses across India and worldwide.
                 </p>
               </motion.div>
 
@@ -72,7 +72,7 @@ export function AboutPageClient() {
                 <Button href="/contact" variant="primary">
                   Book a Consultation
                 </Button>
-                <Button href="/#services" variant="secondary">
+                <Button href="/services" variant="secondary">
                   View Services
                 </Button>
               </motion.div>

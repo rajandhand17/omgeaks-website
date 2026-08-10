@@ -5,12 +5,24 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ContactDock } from "@/components/layout/ContactDock";
 import { COMPANY } from "@/lib/brand";
+import { OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms governing use of the OmGeaks website and enquiries submitted through it.",
-  alternates: { canonical: "https://omgeaks.com/terms" },
+  alternates: { canonical: `${SITE_URL}/terms` },
   robots: { index: true, follow: true },
+  openGraph: {
+    title: "Terms of Service · OmGeaks",
+    description: "Terms governing use of the OmGeaks website and enquiries submitted through it.",
+    url: `${SITE_URL}/terms`,
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service · OmGeaks",
+    images: [OG_IMAGE.url],
+  },
 };
 
 export default function TermsPage() {

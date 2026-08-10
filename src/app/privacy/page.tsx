@@ -5,12 +5,26 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ContactDock } from "@/components/layout/ContactDock";
 import { COMPANY } from "@/lib/brand";
+import { OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How OmGeaks collects, uses, and protects information submitted through omgeaks.com.",
-  alternates: { canonical: "https://omgeaks.com/privacy" },
+  description:
+    "How OmGeaks collects, uses, and protects information submitted through omgeaks.com.",
+  alternates: { canonical: `${SITE_URL}/privacy` },
   robots: { index: true, follow: true },
+  openGraph: {
+    title: "Privacy Policy · OmGeaks",
+    description:
+      "How OmGeaks collects, uses, and protects information submitted through omgeaks.com.",
+    url: `${SITE_URL}/privacy`,
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy · OmGeaks",
+    images: [OG_IMAGE.url],
+  },
 };
 
 export default function PrivacyPage() {

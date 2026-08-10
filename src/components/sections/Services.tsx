@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   RiRobot2Line,
   RiFlowChart,
@@ -8,11 +9,13 @@ import {
   RiServerLine,
   RiToolsLine,
   RiPuzzleLine,
+  RiGlobalLine,
 } from "react-icons/ri";
 import { SERVICES } from "@/lib/constants";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Section } from "@/components/ui/Container";
 import { MorphCard } from "@/components/experience/ScrollMorph";
+import { Button } from "@/components/ui/Button";
 
 const ICONS = {
   RiRobot2Line,
@@ -22,6 +25,7 @@ const ICONS = {
   RiServerLine,
   RiToolsLine,
   RiPuzzleLine,
+  RiGlobalLine,
 } as const;
 
 export function Services() {
@@ -29,15 +33,15 @@ export function Services() {
     <Section id="services">
       <SectionHeading
         eyebrow="What we build"
-        title="Seven capabilities. One engineering standard."
-        description="Clear offerings — each designed to connect into a single operating system for your business."
+        title="Software, websites, apps & AI — one standard."
+        description="Clear offerings for businesses that need digital products that rank, convert, and scale. Explore dedicated pages for our core services."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {SERVICES.map((service, i) => {
           const Icon = ICONS[service.icon as keyof typeof ICONS];
-          return (
-            <MorphCard key={service.title} index={i} className="!p-6">
+          const inner = (
+            <>
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky/12 via-white to-orange/10 ring-1 ring-[rgba(0,59,115,0.08)]">
                 {Icon && <Icon className="h-5 w-5 text-deep-blue" aria-hidden />}
               </div>
@@ -46,9 +50,26 @@ export function Services() {
               <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-sky">
                 {service.outcome}
               </p>
-            </MorphCard>
+              <span className="mt-4 inline-block text-sm font-medium text-deep-blue">
+                View service →
+              </span>
+            </>
+          );
+
+          return (
+            <Link key={service.title} href={service.href} className="block h-full">
+              <MorphCard index={i} className="!p-6 h-full">
+                {inner}
+              </MorphCard>
+            </Link>
           );
         })}
+      </div>
+
+      <div className="mt-10 flex justify-center">
+        <Button href="/services" variant="secondary">
+          View all services
+        </Button>
       </div>
     </Section>
   );

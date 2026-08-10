@@ -15,8 +15,8 @@ export const WHY_POINTS = [
       "You work with experienced engineers and product thinkers, not a revolving bench of juniors.",
   },
   {
-    title: "Global craft, local partnership",
+    title: "Global craft, Ludhiana roots",
     description:
-      "Follow-the-sun collaboration with the quality standard of a world-class product organization.",
+      "Based in Samrala, Ludhiana (Punjab), we partner with local and global clients with the quality standard of a world-class product team.",
   },
 ] as const;
