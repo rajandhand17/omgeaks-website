@@ -267,8 +267,8 @@ export const TESTIMONIALS = [
 
 export const FAQ_ITEMS = [
   {
-    q: "What is the correct name — OmGeaks or Omega?",
-    a: "Our company name is OmGeaks Pvt. Ltd. (brand: OmGeaks). We are a software company in Samrala, Ludhiana, Punjab. We are not Omega Pvt. Ltd. or any Omega brand. Website: omgeaks.com.",
+    q: "What is OmGeaks?",
+    a: "OmGeaks (legal name: OmGeaks Pvt. Ltd.) is a software company based in Samrala, Ludhiana, Punjab. Official website: https://omgeaks.com — we build custom software, websites, and mobile applications.",
   },
   {
     q: "What does OmGeaks build?",

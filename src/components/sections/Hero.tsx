@@ -67,9 +67,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.28, ease }}
             className="mt-5 max-w-lg text-[1.05rem] leading-[1.7] text-muted"
           >
-            OmGeaks Pvt. Ltd. is a software company in Samrala, Ludhiana building custom
-            software, high-performance websites, mobile applications, and AI automation —
-            production systems that help your business get found and scale.
+            Official website of OmGeaks Pvt. Ltd. (OmGeaks) — a software company in
+            Samrala, Ludhiana, Punjab. We build custom software, websites, mobile apps, and
+            AI automation that help your business get found and scale.
           </motion.p>
 
           <motion.div

@@ -45,7 +45,7 @@ export const SEO_KEYWORDS = [
 export const DEFAULT_TITLE =
   "OmGeaks | Software, Website & Mobile App Development | Ludhiana, Punjab";
 export const DEFAULT_DESCRIPTION =
-  "OmGeaks Pvt. Ltd. (OmGeaks) is a software company in Samrala, Ludhiana, Punjab — not Omega. We build custom software, websites, mobile apps, AI agents, and cloud platforms for businesses in India and worldwide.";
+  "OmGeaks Pvt. Ltd. (brand: OmGeaks) is the official website of the software company in Samrala, Ludhiana, Punjab. We build custom software, websites, mobile apps, AI agents, and cloud platforms.";
 
 function postalAddress() {
   const { streetAddress, addressLocality, addressRegion, postalCode, addressCountry, addressArea } =
@@ -71,12 +71,7 @@ export function organizationJsonLd() {
     "@type": ["Organization", "ProfessionalService"],
     "@id": `${SITE_URL}/#organization`,
     name: "OmGeaks",
-    alternateName: [
-      "OmGeaks Pvt. Ltd.",
-      "Omgeaks",
-      "OmGeaks Private Limited",
-      "Om Geaks",
-    ],
+    alternateName: ["OmGeaks Pvt. Ltd.", "Omgeaks", "OmGeaks Private Limited"],
     legalName: COMPANY.legalName,
     url: SITE_URL,
     logo: `${SITE_URL}/logos/omgeaks-logo.png`,
@@ -175,7 +170,8 @@ export function websiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: COMPANY.name,
+    name: "OmGeaks",
+    alternateName: "OmGeaks Pvt. Ltd.",
     url: SITE_URL,
     description: DEFAULT_DESCRIPTION,
     publisher: { "@id": `${SITE_URL}/#organization` },
