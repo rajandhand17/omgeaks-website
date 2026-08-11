@@ -339,6 +339,45 @@ h4,
   border-radius: 999px;
 }
 
+.work-stage {
+  perspective: 1400px;
+}
+
+.work-laptop {
+  transform: rotateX(14deg) rotateY(-22deg) rotateZ(2deg);
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.work-stage:hover .work-laptop {
+  transform: rotateX(10deg) rotateY(-12deg) rotateZ(0deg) translateY(-6px);
+}
+
+.work-phone {
+  transform: rotateX(8deg) rotateY(-16deg);
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.work-stage:hover .work-phone {
+  transform: rotateX(4deg) rotateY(-6deg) translateY(-8px);
+}
+
+@keyframes screen-pan {
+  0%,
+  18% {
+    transform: translateY(0);
+  }
+  82%,
+  100% {
+    transform: translateY(-42%);
+  }
+}
+
+.screen-pan {
+  animation: screen-pan 14s var(--ease-out) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
