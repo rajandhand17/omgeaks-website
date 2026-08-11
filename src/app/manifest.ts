@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "OmGeaks — AI & Product Engineering",
+    name: "OmGeaks — Website, Software & App Development",
     short_name: "OmGeaks",
     description:
-      "Software, website & mobile app development company — AI agents, automation, CRM, and cloud by OmGeaks.",
+      "IT company in Ludhiana — websites, custom software, mobile apps, eCommerce, and AI by OmGeaks.",
     start_url: "/",
     display: "standalone",
     background_color: "#FFFFFF",

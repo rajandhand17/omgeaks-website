@@ -9,9 +9,11 @@ export const NAV_LINKS = [
 ] as const;
 
 export const FOOTER_SERVICE_LINKS = [
-  { label: "Software Development", href: "/services/software-development" },
   { label: "Website Development", href: "/services/website-development" },
+  { label: "Software Development", href: "/services/software-development" },
   { label: "Mobile App Development", href: "/services/mobile-app-development" },
+  { label: "eCommerce Websites", href: "/services/ecommerce-website-development" },
+  { label: "Web Applications", href: "/services/web-application-development" },
   { label: "AI Agents & Automation", href: "/services/ai-agents" },
 ] as const;
 
@@ -293,6 +295,14 @@ export const FAQ_ITEMS = [
   {
     q: "Can you take over an existing website or codebase?",
     a: "Yes. We audit, stabilize, and modernize websites, apps, and software — then accelerate delivery without unnecessary rewrites.",
+  },
+  {
+    q: "How much does a website or app cost?",
+    a: "It depends on scope. A business website, eCommerce store, custom software, and a mobile app have different ranges. Share your brief — we reply with a clear quote, timeline, and what’s included.",
+  },
+  {
+    q: "Do you work with small businesses as well as companies?",
+    a: "Yes. We work with founders, SMEs, and growing companies who need a professional website, software, or app — not just enterprise clients.",
   },
 ] as const;
 

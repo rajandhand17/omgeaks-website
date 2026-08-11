@@ -25,7 +25,7 @@ export function ServiceLanding({ service }: { service: ServicePageContent }) {
               <p className="mt-6 text-base leading-relaxed text-muted md:text-lg">{service.intro}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="/contact" variant="primary">
-                  Start your project
+                  Get a Free Quote
                 </Button>
                 <Button href={COMPANY.whatsapp} variant="secondary">
                   WhatsApp us

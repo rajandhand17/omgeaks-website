@@ -65,9 +65,9 @@ export const SERVICE_PAGES: ServicePageContent[] = [
   {
     slug: "website-development",
     title: "Website Development",
-    metaTitle: "Website Development Company in Ludhiana",
+    metaTitle: "Website Development Company in Ludhiana, Punjab",
     metaDescription:
-      "Professional website development by OmGeaks — fast, SEO-ready, conversion-focused websites and web apps for businesses in Ludhiana, Punjab and worldwide.",
+      "Hire OmGeaks for website designing and web development in Ludhiana, Punjab — SEO-ready business websites, landing pages, and web apps that convert visitors into leads.",
     h1: "Website development that looks premium and converts visitors",
     intro:
       "Need a high-performing company website, product site, or marketing web experience? OmGeaks builds modern websites with strong SEO foundations, clear messaging, and engineering quality — so your brand ranks, loads fast, and turns visitors into leads.",
@@ -204,6 +204,102 @@ export const SERVICE_PAGES: ServicePageContent[] = [
       "business automation company",
       "AI software company",
       "AI automation Ludhiana",
+    ],
+  },
+  {
+    slug: "ecommerce-website-development",
+    title: "eCommerce Website Development",
+    metaTitle: "eCommerce Website Development Company",
+    metaDescription:
+      "OmGeaks builds eCommerce websites and online stores with payments, inventory, and SEO — for brands in Ludhiana, Punjab and across India.",
+    h1: "eCommerce websites that sell, not just look good",
+    intro:
+      "Need an online store? OmGeaks designs and develops eCommerce websites with product catalogues, secure checkout, shipping, and admin dashboards — so you can take orders from day one.",
+    highlights: [
+      {
+        title: "Checkout that converts",
+        body: "Fast product pages, clear carts, UPI/cards/wallets, and mobile-first buying flows.",
+      },
+      {
+        title: "Ops, not just a storefront",
+        body: "Inventory, orders, GST-ready invoices, and CRM/WhatsApp notifications when you need them.",
+      },
+      {
+        title: "Ready to rank",
+        body: "Clean URLs, schema, and speed so Google can index your products and categories.",
+      },
+    ],
+    deliverables: [
+      "Custom eCommerce website / store",
+      "Payment gateway integration",
+      "Product catalogue & inventory",
+      "Order management dashboard",
+      "SEO + analytics setup",
+      "Training and launch support",
+    ],
+    faqs: [
+      {
+        q: "Can you migrate my existing shop?",
+        a: "Yes. We can rebuild or migrate catalogues, customers, and orders with a planned cutover so you don’t lose sales.",
+      },
+      {
+        q: "Do you support Indian payments?",
+        a: "Yes — Razorpay, PayU, UPI, cards, and other gateways used by Indian businesses.",
+      },
+    ],
+    keywords: [
+      "ecommerce website development",
+      "online store development",
+      "ecommerce website Ludhiana",
+      "shopify alternative development",
+    ],
+  },
+  {
+    slug: "web-application-development",
+    title: "Web Application Development",
+    metaTitle: "Web Application Development Company",
+    metaDescription:
+      "Custom web application development by OmGeaks — portals, dashboards, SaaS, and internal tools for businesses that need more than a brochure website.",
+    h1: "Web applications built for how your business actually works",
+    intro:
+      "If a normal website is not enough, we build web applications: client portals, admin dashboards, booking systems, SaaS products, and internal tools with login, roles, and real data.",
+    highlights: [
+      {
+        title: "From idea to production",
+        body: "Discovery, architecture, UI, APIs, and cloud deploy — one team owns the full stack.",
+      },
+      {
+        title: "Secure by default",
+        body: "Authentication, permissions, backups, and monitoring so your app can be used every day.",
+      },
+      {
+        title: "Integrations that save time",
+        body: "Connect payments, WhatsApp, email, accounting, and your existing software.",
+      },
+    ],
+    deliverables: [
+      "Custom web portals & dashboards",
+      "SaaS / multi-user applications",
+      "API development",
+      "Role-based access & security",
+      "Cloud hosting & CI/CD",
+      "Ongoing feature development",
+    ],
+    faqs: [
+      {
+        q: "Is a web app different from a website?",
+        a: "Yes. A website presents your brand. A web app lets users log in, work, pay, or manage data. We build both.",
+      },
+      {
+        q: "Can you start with an MVP?",
+        a: "Yes. We ship a first version fast, then iterate from real usage instead of over-building.",
+      },
+    ],
+    keywords: [
+      "web application development",
+      "custom web app company",
+      "SaaS development company",
+      "business portal development",
     ],
   },
 ];

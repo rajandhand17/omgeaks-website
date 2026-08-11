@@ -35,10 +35,10 @@ export function CTA() {
               Contact OmGeaks
             </p>
             <h2 className="mt-4 font-display text-[1.85rem] font-bold leading-tight text-white sm:text-4xl md:text-[2.6rem]">
-              Tell us what you want to build
+              Need a website, software, or mobile app?
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-[0.98rem] leading-relaxed text-white/65">
-              Book a consultation or message us on WhatsApp. We typically respond within one business day.
+              Get a free project quote. Tell us what you need — we typically reply within one business day on email or WhatsApp.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <Button
@@ -46,7 +46,7 @@ export function CTA() {
                 variant="secondary"
                 className="w-full !bg-white !text-navy hover:!shadow-[0_12px_32px_rgba(0,174,239,0.25)] sm:w-auto"
               >
-                Book a Consultation
+                Get a Free Quote
               </Button>
               <Button
                 href={COMPANY.whatsapp}
@@ -56,6 +56,12 @@ export function CTA() {
                 WhatsApp us →
               </Button>
             </div>
+            <a
+              href={`tel:+${COMPANY.phoneRaw}`}
+              className="mt-5 inline-block text-sm text-white/55 transition hover:text-white"
+            >
+              Or call {COMPANY.phone}
+            </a>
           </div>
         </motion.div>
       </Container>

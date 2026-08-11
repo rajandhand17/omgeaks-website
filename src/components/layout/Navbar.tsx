@@ -65,7 +65,7 @@ export function Navbar({ visible }: { visible: boolean }) {
 
           <div className="hidden lg:block">
             <Button href="/contact" variant="primary" className="!px-5 !py-2.5 text-[0.72rem]">
-              Book a Consultation
+              Get a Quote
             </Button>
           </div>
 
@@ -128,7 +128,7 @@ export function Navbar({ visible }: { visible: boolean }) {
                 magnetic={false}
                 onClick={() => setOpen(false)}
               >
-                Book a Consultation
+                Get a Quote
               </Button>
             </div>
           </motion.div>

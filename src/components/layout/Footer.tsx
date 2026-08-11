@@ -21,7 +21,7 @@ export function Footer() {
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <Button href="/contact" variant="primary" className="!px-6 !py-2.5 text-xs">
-                Book a Consultation
+                Get a Free Quote
               </Button>
               <SocialLinks />
             </div>

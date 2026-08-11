@@ -70,7 +70,7 @@ export function AboutPageClient() {
                 className="mt-14 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
               >
                 <Button href="/contact" variant="primary">
-                  Book a Consultation
+                  Get a Free Quote
                 </Button>
                 <Button href="/services" variant="secondary">
                   View Services

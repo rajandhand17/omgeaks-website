@@ -13,39 +13,35 @@ export const OG_IMAGE = {
 
 export const SEO_KEYWORDS = [
   "OmGeaks",
-  "Omgeaks",
-  "OmGeaks Pvt Ltd",
-  "OmGeaks Pvt. Ltd.",
-  "OmGeaks Private Limited",
-  "OmGeaks software company",
-  "OmGeaks Ludhiana",
-  "OmGeaks Samrala",
-  "software development company",
-  "software development company Ludhiana",
   "website development company",
-  "website development Ludhiana",
-  "web development company Punjab",
+  "website designing company",
+  "web development company",
+  "IT company",
+  "IT company in Ludhiana",
+  "IT company in Punjab",
+  "software company",
+  "software development company",
+  "custom software development",
   "mobile app development company",
   "Android app development",
   "iOS app development",
+  "eCommerce website development",
+  "web application development",
+  "business website design",
+  "hire software developers",
+  "hire web developers India",
+  "CRM software development",
   "Flutter app development",
-  "IT company Ludhiana",
-  "IT company Punjab",
-  "IT company Samrala",
-  "custom software development",
-  "business software development",
-  "AI product engineering",
-  "AI agents development",
-  "business automation company",
-  "enterprise CRM development",
   "Next.js development company",
   "Laravel development company",
+  "digital product studio",
+  "AI software company",
 ] as const;
 
 export const DEFAULT_TITLE =
-  "OmGeaks | Software, Website & Mobile App Development | Ludhiana, Punjab";
+  "Website, Software & Mobile App Development Company | OmGeaks";
 export const DEFAULT_DESCRIPTION =
-  "OmGeaks Pvt. Ltd. (brand: OmGeaks) is the official website of the software company in Samrala, Ludhiana, Punjab. We build custom software, websites, mobile apps, AI agents, and cloud platforms.";
+  "OmGeaks is an IT and software company in Ludhiana, Punjab. We design and develop business websites, custom software, Android & iOS apps, eCommerce, CRM, and AI automation — get a free project quote."
 
 function postalAddress() {
   const { streetAddress, addressLocality, addressRegion, postalCode, addressCountry, addressArea } =

@@ -79,7 +79,7 @@ export function Hero() {
             className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
           >
             <Button href="/contact" variant="primary" className="w-full sm:w-auto">
-              Book a Consultation
+              Get a Free Quote
             </Button>
             <Button
               href={COMPANY.whatsapp}
