@@ -17,7 +17,8 @@ export const BRAND = {
 
 export const COMPANY = {
   name: "OmGeaks",
-  legalName: "OmGeaks Pvt. Ltd.",
+  /** Must match Google Business Profile listing name */
+  legalName: "Omgeaks PVT. LTD.",
   tagline: "Engineering Intelligent Digital Products",
   positioning: "AI & Product Engineering",
   email: "hello@omgeaks.com",

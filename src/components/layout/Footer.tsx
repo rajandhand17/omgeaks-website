@@ -74,6 +74,14 @@ export function Footer() {
               >
                 {formatCompanyAddress()}
               </a>
+              <a
+                href={COMPANY.googleBusinessProfile}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-lux block font-medium text-navy/70"
+              >
+                Google Business Profile →
+              </a>
             </div>
           </div>
         </div>

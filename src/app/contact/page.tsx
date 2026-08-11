@@ -172,6 +172,12 @@ export default function ContactPage() {
                       href: COMPANY.googleBusinessProfile,
                       Icon: RiMapPinLine,
                     },
+                    {
+                      label: "Google",
+                      value: "Omgeaks PVT. LTD. — Business Profile",
+                      href: COMPANY.googleBusinessProfile,
+                      Icon: RiMapPinLine,
+                    },
                   ].map((card, i) => (
                     <motion.div
                       key={card.label}
