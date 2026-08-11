@@ -62,61 +62,57 @@ export default function ContactPage() {
     };
 
     try {
-      const apiRes = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, company, message }),
-      });
-      const apiJson = (await apiRes.json()) as {
-        ok?: boolean;
-        error?: string;
-        needsActivation?: boolean;
-        fallback?: boolean;
-      };
+      const targets = [...new Set([COMPANY.email, COMPANY.emailInbox])];
 
-      if (apiRes.ok && apiJson.ok) {
+      const [apiRes, fsResults] = await Promise.all([
+        fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phone, company, message }),
+        })
+          .then(async (res) => {
+            const json = (await res.json().catch(() => ({}))) as {
+              ok?: boolean;
+              error?: string;
+            };
+            return { ok: res.ok && json.ok === true, error: json.error };
+          })
+          .catch(() => ({ ok: false as const, error: "" })),
+        Promise.all(
+          targets.map(async (to) => {
+            const fsRes = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify(payload),
+            });
+            const fsJson = (await fsRes.json().catch(() => ({}))) as {
+              success?: string | boolean;
+              message?: string;
+            };
+            const ok =
+              fsJson.success === true || String(fsJson.success).toLowerCase() === "true";
+            return { to, ok, msg: fsJson.message || "" };
+          })
+        ),
+      ]);
+
+      if (apiRes.ok || fsResults.some((r) => r.ok)) {
         setSent(true);
         form.reset();
         return;
       }
 
-      if (apiJson.needsActivation) {
-        throw new Error(apiJson.error || "Activate the form email, then submit again.");
+      const activation = fsResults.find((r) => /activat/i.test(r.msg));
+      if (activation) {
+        throw new Error(
+          `First-time email setup: open Gmail for ${COMPANY.emailInbox} (Inbox, Promotions, and Spam). Click the FormSubmit “Activate Form” link once, then submit this form again. After that, every enquiry is delivered to ${COMPANY.email} and ${COMPANY.emailInbox}.`
+        );
       }
 
-      const targets = [...new Set([COMPANY.email, COMPANY.emailInbox])];
-      const results = await Promise.all(
-        targets.map(async (to) => {
-          const fsRes = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify(payload),
-          });
-          const fsJson = (await fsRes.json().catch(() => ({}))) as {
-            success?: string | boolean;
-            message?: string;
-          };
-          const ok =
-            fsJson.success === true || String(fsJson.success).toLowerCase() === "true";
-          return { to, ok, msg: fsJson.message || "" };
-        })
-      );
-
-      if (!results.some((r) => r.ok)) {
-        const msg = results[0]?.msg || apiJson.error || "Failed to send message.";
-        if (/activat/i.test(msg)) {
-          throw new Error(
-            `Check ${COMPANY.email} and ${COMPANY.emailInbox} (inbox + spam) for a FormSubmit “Activate Form” email, click it once, then submit again.`
-          );
-        }
-        throw new Error(msg);
-      }
-
-      setSent(true);
-      form.reset();
+      throw new Error(fsResults[0]?.msg || apiRes.error || "Failed to send message.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to send message.");
     } finally {
@@ -291,7 +287,7 @@ export default function ContactPage() {
                         />
                       </label>
                       {error && (
-                        <p className="text-sm text-orange sm:col-span-2" role="alert">
+                        <p className="text-sm leading-relaxed text-orange sm:col-span-2" role="alert">
                           {error}
                         </p>
                       )}

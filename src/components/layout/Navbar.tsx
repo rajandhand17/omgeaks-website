@@ -51,7 +51,7 @@ export function Navbar({ visible }: { visible: boolean }) {
             <Logo variant="icon" className="h-7 w-auto sm:h-8 md:h-9" priority />
           </Link>
 
-          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 lg:flex" aria-label="Primary">
+          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 xl:gap-7 lg:flex" aria-label="Primary">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}

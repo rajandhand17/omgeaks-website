@@ -113,44 +113,6 @@ async function sendWithGmail(data: Payload) {
   return info.messageId;
 }
 
-async function sendWithFormSubmit(data: Payload, to: string) {
-  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Origin: "https://omgeaks.com",
-      Referer: "https://omgeaks.com/contact",
-    },
-    body: JSON.stringify({
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      company: data.company,
-      message: data.message,
-      _subject: ENQUIRY_EMAIL_SUBJECT,
-      _template: "table",
-      _captcha: "false",
-      _replyto: data.email,
-      Source: "https://omgeaks.com/contact",
-    }),
-  });
-
-  const json = (await res.json().catch(() => ({}))) as {
-    success?: string | boolean;
-    message?: string;
-  };
-  const ok = json.success === true || String(json.success).toLowerCase() === "true";
-  const activation = /activat/i.test(json.message || "");
-  if (activation) {
-    return { status: "activation" as const, to, message: json.message || "" };
-  }
-  if (!res.ok || !ok) {
-    throw new Error(json.message || `FormSubmit failed for ${to}`);
-  }
-  return { status: "sent" as const, to, message: json.message || "sent" };
-}
-
 async function sendWithWeb3Forms(data: Payload) {
   const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
   if (!accessKey) return null;
@@ -232,47 +194,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true, message: "Message sent.", provider: "web3forms" });
     }
 
-    const delivered: string[] = [];
-    const activation: string[] = [];
-    const failures: string[] = [];
-    for (const to of recipients()) {
-      try {
-        const result = await sendWithFormSubmit(payload, to);
-        if (result.status === "sent") delivered.push(to);
-        else activation.push(to);
-      } catch (err) {
-        failures.push(err instanceof Error ? err.message : String(err));
-      }
-    }
-
-    if (delivered.length > 0) {
-      return NextResponse.json({
-        ok: true,
-        message: "Message sent.",
-        provider: "formsubmit",
-        delivered,
-      });
-    }
-
-    if (activation.length > 0) {
-      return NextResponse.json(
-        {
-          ok: false,
-          needsActivation: true,
-          error:
-            "First-time email setup: check rajandhand17@gmail.com (Inbox and Spam) for a FormSubmit “Activate Form” email, click the link once, then submit the contact form again. After that, every enquiry will arrive.",
-        },
-        { status: 409 }
-      );
-    }
-
+    // FormSubmit from Vercel IPs is blocked / returns empty errors.
+    // The contact page sends from the browser (real Origin) instead.
     return NextResponse.json(
       {
         ok: false,
-        error: failures[0] || "No email provider could send this message.",
         fallback: true,
+        error: "No server mail provider configured.",
       },
-      { status: 502 }
+      { status: 503 }
     );
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Could not send your message.";

@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { TESTIMONIALS } from "@/lib/constants";
+import { TESTIMONIALS, COMPANY } from "@/lib/constants";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Section } from "@/components/ui/Container";
 import { RiStarFill } from "react-icons/ri";
@@ -53,6 +53,17 @@ export function Testimonials() {
           </motion.blockquote>
         ))}
       </div>
+      <p className="mt-10 text-center text-sm text-muted">
+        Prefer Google reviews?{" "}
+        <a
+          href={COMPANY.googleBusinessProfile}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-sky hover:underline"
+        >
+          See Omgeaks PVT. LTD. on Google
+        </a>
+      </p>
     </Section>
   );
 }
