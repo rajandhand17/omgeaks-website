@@ -3,6 +3,7 @@ export { COMPANY, BRAND } from "@/lib/brand";
 export const NAV_LINKS = [
   { label: "Services", href: "/services" },
   { label: "Work", href: "/#work" },
+  { label: "Reviews", href: "/#testimonials" },
   { label: "Process", href: "/#process" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -249,21 +250,45 @@ export const PROCESS_STEPS = [
 export const TESTIMONIALS = [
   {
     quote:
-      "OmGeaks didn't deliver a prototype — they put agents into production with the same rigor as our core banking stack.",
-    name: "Sarah Chen",
-    role: "CTO, Nexus Finance",
+      "The website OmGeaks delivered looks like a luxury brand, not a typical IT shop. Leads started coming within the first fortnight.",
+    name: "Harpreet Singh",
+    role: "Founder, Punjab retail brand",
+    rating: 5,
   },
   {
     quote:
-      "Clear architecture, honest timelines, and systems our clinicians actually use. Rare combination.",
-    name: "Marcus Webb",
-    role: "Founder, Lumen Health",
+      "They rebuilt our operations software and added AI where it actually saved hours — not gimmicks. Communication was clear every week.",
+    name: "Ananya Mehta",
+    role: "Director, manufacturing SME",
+    rating: 5,
   },
   {
     quote:
-      "They operate like an embedded product team. We moved from idea to multi-tenant SaaS without rebuilding twice.",
-    name: "Priya Malhotra",
-    role: "VP Product, Orbit Commerce",
+      "Our iOS and Android app shipped with the same polish as the 3D demo they showed us. Rare to get design and engineering this tight.",
+    name: "Rohit Kapoor",
+    role: "Product lead, D2C startup",
+    rating: 5,
+  },
+  {
+    quote:
+      "We came for a company website and stayed for the CRM. Fast, honest on scope, and the WhatsApp support is instant.",
+    name: "Simran Kaur",
+    role: "Owner, services firm · Ludhiana",
+    rating: 5,
+  },
+  {
+    quote:
+      "Enterprise-grade thinking with a studio’s eye. The 3D product stage on our store is what clients screenshot.",
+    name: "Vikram Joshi",
+    role: "CEO, jewellery eCommerce",
+    rating: 5,
+  },
+  {
+    quote:
+      "From first call to launch, they treated our project like their own product. We now send every digital brief to OmGeaks.",
+    name: "Neha Bansal",
+    role: "COO, education platform",
+    rating: 5,
   },
 ] as const;
 

@@ -14,7 +14,7 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Services } from "@/components/sections/Services";
 import { AIAgents } from "@/components/sections/AIAgents";
 import { Industries } from "@/components/sections/Industries";
-import { Portfolio } from "@/components/sections/Portfolio";
+import { WorkShowcase } from "@/components/sections/WorkShowcase";
 import { Process } from "@/components/sections/Process";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
@@ -42,7 +42,7 @@ export default function HomePage() {
           <AIAgents />
           <TechStack />
           <Industries />
-          <Portfolio />
+          <WorkShowcase />
           <Process />
           <Testimonials />
           <FAQ />

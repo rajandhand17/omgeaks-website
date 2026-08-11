@@ -3,8 +3,12 @@ import nodemailer from "nodemailer";
 import { Resend } from "resend";
 import { ENQUIRY_EMAIL_SUBJECT } from "@/lib/contact-email";
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "rajandhand17@gmail.com";
-// Public-facing address is hello@omgeaks.com (forwards to CONTACT_TO_EMAIL via DNS).
+const PRIMARY_TO = process.env.CONTACT_TO_EMAIL || "hello@omgeaks.com";
+const BACKUP_TO = "rajandhand17@gmail.com";
+
+function recipients() {
+  return [...new Set([PRIMARY_TO, BACKUP_TO].filter(Boolean))];
+}
 
 type ContactBody = {
   name?: string;
@@ -73,7 +77,7 @@ async function sendWithResend(data: Payload) {
 
   const result = await resend.emails.send({
     from,
-    to: [TO_EMAIL],
+    to: recipients(),
     replyTo: data.email,
     subject: ENQUIRY_EMAIL_SUBJECT,
     html: buildHtml(data),
@@ -88,7 +92,7 @@ async function sendWithResend(data: Payload) {
 }
 
 async function sendWithGmail(data: Payload) {
-  const user = process.env.GMAIL_USER || TO_EMAIL;
+  const user = process.env.GMAIL_USER || BACKUP_TO;
   const pass = process.env.GMAIL_APP_PASSWORD;
   if (!pass) return null;
 
@@ -99,7 +103,7 @@ async function sendWithGmail(data: Payload) {
 
   const info = await transporter.sendMail({
     from: `"OmGeaks" <${user}>`,
-    to: TO_EMAIL,
+    to: recipients().join(", "),
     replyTo: data.email,
     subject: ENQUIRY_EMAIL_SUBJECT,
     html: buildHtml(data),
@@ -107,6 +111,35 @@ async function sendWithGmail(data: Payload) {
   });
 
   return info.messageId;
+}
+
+async function sendWithFormSubmit(data: Payload, to: string) {
+  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      company: data.company,
+      message: data.message,
+      _subject: ENQUIRY_EMAIL_SUBJECT,
+      _template: "table",
+      _captcha: "false",
+      _replyto: data.email,
+      Source: "https://omgeaks.com/contact",
+    }),
+  });
+
+  const json = (await res.json().catch(() => ({}))) as {
+    success?: string | boolean;
+    message?: string;
+  };
+  const ok = json.success === true || String(json.success).toLowerCase() === "true";
+  if (!res.ok || !ok) {
+    throw new Error(json.message || `FormSubmit failed for ${to}`);
+  }
+  return json.message || "sent";
 }
 
 async function sendWithWeb3Forms(data: Payload) {
@@ -174,19 +207,6 @@ export async function POST(request: Request) {
     message,
   };
 
-  const configured =
-    Boolean(process.env.RESEND_API_KEY) ||
-    Boolean(process.env.GMAIL_APP_PASSWORD) ||
-    Boolean(process.env.WEB3FORMS_ACCESS_KEY);
-
-  // No server mail provider — let the client fall back to FormSubmit.
-  if (!configured) {
-    return NextResponse.json(
-      { ok: false, error: "Server email not configured.", fallback: true },
-      { status: 503 }
-    );
-  }
-
   try {
     const viaResend = await sendWithResend(payload);
     if (viaResend) {
@@ -203,8 +223,36 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true, message: "Message sent.", provider: "web3forms" });
     }
 
+    const delivered: string[] = [];
+    const failures: string[] = [];
+    for (const to of recipients()) {
+      try {
+        await sendWithFormSubmit(payload, to);
+        delivered.push(to);
+      } catch (err) {
+        failures.push(err instanceof Error ? err.message : String(err));
+      }
+    }
+
+    if (delivered.length > 0) {
+      return NextResponse.json({
+        ok: true,
+        message: "Message sent.",
+        provider: "formsubmit",
+        delivered,
+      });
+    }
+
+    const hint = failures.some((m) => /activat/i.test(m))
+      ? " Check inbox and spam for a FormSubmit activation email, click the link once, then submit again."
+      : "";
+
     return NextResponse.json(
-      { ok: false, error: "No email provider could send this message.", fallback: true },
+      {
+        ok: false,
+        error: (failures[0] || "No email provider could send this message.") + hint,
+        fallback: true,
+      },
       { status: 502 }
     );
   } catch (err) {

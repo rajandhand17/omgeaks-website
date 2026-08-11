@@ -75,29 +75,32 @@ export default function ContactPage() {
         return;
       }
 
-      const fsRes = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(COMPANY.emailInbox)}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
+      const targets = [...new Set([COMPANY.email, COMPANY.emailInbox])];
+      const results = await Promise.all(
+        targets.map(async (to) => {
+          const fsRes = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          const fsJson = (await fsRes.json().catch(() => ({}))) as {
+            success?: string | boolean;
+            message?: string;
+          };
+          const ok =
+            fsJson.success === true || String(fsJson.success).toLowerCase() === "true";
+          return { to, ok, msg: fsJson.message || "" };
+        })
       );
-      const fsJson = (await fsRes.json().catch(() => ({}))) as {
-        success?: string | boolean;
-        message?: string;
-      };
-      const ok =
-        fsJson.success === true || String(fsJson.success).toLowerCase() === "true";
 
-      if (!fsRes.ok || !ok) {
-        const msg = fsJson.message || apiJson.error || "Failed to send message.";
+      if (!results.some((r) => r.ok)) {
+        const msg = results[0]?.msg || apiJson.error || "Failed to send message.";
         if (/activat/i.test(msg)) {
           throw new Error(
-            `Check ${COMPANY.emailInbox} (inbox + spam) for a FormSubmit “Activate Form” email, click it once, then submit again.`
+            `Check ${COMPANY.email} and ${COMPANY.emailInbox} (inbox + spam) for a FormSubmit “Activate Form” email, click it once, then submit again.`
           );
         }
         throw new Error(msg);
