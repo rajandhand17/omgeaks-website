@@ -67,12 +67,21 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone, company, message }),
       });
-      const apiJson = (await apiRes.json()) as { ok?: boolean; error?: string };
+      const apiJson = (await apiRes.json()) as {
+        ok?: boolean;
+        error?: string;
+        needsActivation?: boolean;
+        fallback?: boolean;
+      };
 
       if (apiRes.ok && apiJson.ok) {
         setSent(true);
         form.reset();
         return;
+      }
+
+      if (apiJson.needsActivation) {
+        throw new Error(apiJson.error || "Activate the form email, then submit again.");
       }
 
       const targets = [...new Set([COMPANY.email, COMPANY.emailInbox])];

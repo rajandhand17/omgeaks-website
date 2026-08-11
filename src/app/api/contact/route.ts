@@ -116,7 +116,12 @@ async function sendWithGmail(data: Payload) {
 async function sendWithFormSubmit(data: Payload, to: string) {
   const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Origin: "https://omgeaks.com",
+      Referer: "https://omgeaks.com/contact",
+    },
     body: JSON.stringify({
       name: data.name,
       email: data.email,
@@ -136,10 +141,14 @@ async function sendWithFormSubmit(data: Payload, to: string) {
     message?: string;
   };
   const ok = json.success === true || String(json.success).toLowerCase() === "true";
+  const activation = /activat/i.test(json.message || "");
+  if (activation) {
+    return { status: "activation" as const, to, message: json.message || "" };
+  }
   if (!res.ok || !ok) {
     throw new Error(json.message || `FormSubmit failed for ${to}`);
   }
-  return json.message || "sent";
+  return { status: "sent" as const, to, message: json.message || "sent" };
 }
 
 async function sendWithWeb3Forms(data: Payload) {
@@ -224,11 +233,13 @@ export async function POST(request: Request) {
     }
 
     const delivered: string[] = [];
+    const activation: string[] = [];
     const failures: string[] = [];
     for (const to of recipients()) {
       try {
-        await sendWithFormSubmit(payload, to);
-        delivered.push(to);
+        const result = await sendWithFormSubmit(payload, to);
+        if (result.status === "sent") delivered.push(to);
+        else activation.push(to);
       } catch (err) {
         failures.push(err instanceof Error ? err.message : String(err));
       }
@@ -243,14 +254,22 @@ export async function POST(request: Request) {
       });
     }
 
-    const hint = failures.some((m) => /activat/i.test(m))
-      ? " Check inbox and spam for a FormSubmit activation email, click the link once, then submit again."
-      : "";
+    if (activation.length > 0) {
+      return NextResponse.json(
+        {
+          ok: false,
+          needsActivation: true,
+          error:
+            "First-time email setup: check rajandhand17@gmail.com (Inbox and Spam) for a FormSubmit “Activate Form” email, click the link once, then submit the contact form again. After that, every enquiry will arrive.",
+        },
+        { status: 409 }
+      );
+    }
 
     return NextResponse.json(
       {
         ok: false,
-        error: (failures[0] || "No email provider could send this message.") + hint,
+        error: failures[0] || "No email provider could send this message.",
         fallback: true,
       },
       { status: 502 }
